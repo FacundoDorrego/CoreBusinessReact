@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{1848044B-CB83-37B8-1CF8-72BF5372C858}|corebusinessreact.client.esproj|c:\\facu\\proyectos programacion\\corebusinessreact\\corebusinessreact.client\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{1848044B-CB83-37B8-1CF8-72BF5372C858}|corebusinessreact.client.esproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\corebusinessreact.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:corebusinessreact.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{1848044B-CB83-37B8-1CF8-72BF5372C858}|corebusinessreact.client.esproj|c:\\facu\\proyectos programacion\\corebusinessreact\\corebusinessreact.client\\corebusinessreact.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1848044B-CB83-37B8-1CF8-72BF5372C858}|corebusinessreact.client.esproj|solutionrelative:corebusinessreact.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,19 +31,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "package.json",
-              "DocumentMoniker": "C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\package.json",
-              "RelativeDocumentMoniker": "package.json",
-              "ToolTip": "C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\package.json",
-              "RelativeToolTip": "package.json",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAswCEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-24T01:29:21.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -60,7 +43,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "corebusinessreact.client.esproj",
               "DocumentMoniker": "C:\\Facu\\Proyectos Programacion\\CoreBusinessReact\\corebusinessreact.client\\corebusinessreact.client.esproj",
               "RelativeDocumentMoniker": "corebusinessreact.client.esproj",
@@ -68,7 +51,8 @@
               "RelativeToolTip": "corebusinessreact.client.esproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-24T01:07:00.647Z"
+              "WhenOpened": "2025-02-24T01:07:00.647Z",
+              "EditorCaption": ""
             }
           ]
         }
