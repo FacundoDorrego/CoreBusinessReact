@@ -43,7 +43,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'https://localhost:7228', // Cambia esto al puerto correcto de tu API
+                target: 'https://localhost:7228', 
                 secure: false, // Esto es importante si estás trabajando con certificados auto-firmados en desarrollo
             },
         },
