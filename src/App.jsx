@@ -8,6 +8,8 @@ import Inicio from "./pages/Inicio";
 import Productos from "./pages/Productos";
 import Perfil from "./pages/Perfil";
 import NoEncontrado from "./pages/NoEncontrado";
+import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
 const theme = createTheme({
     palette: {
@@ -32,6 +34,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Inicio />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="registro" element={<Registro />} />
                         <Route path="productos" element={<Productos />} />
                         <Route path="perfil" element={<Perfil />} />
                         <Route path="*" element={<NoEncontrado />} />
