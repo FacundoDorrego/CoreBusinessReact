@@ -1,7 +1,7 @@
 ﻿import { useState } from "react";
 import { TextField, Button, Box, Typography, Container, Grid, Card, CardContent } from "@mui/material";
 import { register } from "../auth/supabaseAuth";
-
+import axios from 'axios';
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,14 +11,33 @@ export default function Register() {
     const handleRegister = async () => {
         setLoading(true);
         try {
-            await register(email, password, nombre);
-            alert("Cuenta creada con éxito 🎯");
+            // Llamada para registrar el usuario en Supabase
+            const { user, rol_id } = await register(email, password, nombre);
+
+            if (!user?.id) {
+                throw new Error("No se pudo obtener el ID del usuario de Supabase");
+            }
+
+            // Ahora se hace la llamada a tu API con el ID de Supabase (user.id)
+            const response = await axios.post("/api/Usuarios", {
+                usuarioID: user.id,  // Usamos el ID que Supabase ha asignado al usuario
+                nombreUsuario: nombre,
+                rolid: rol_id,        // Asumimos que el rol se lo asignas directamente desde Supabase
+            });
+
+            if (response.status === 201) {
+                alert("Cuenta creada con éxito 🎯");
+            } else {
+                alert("Hubo un problema al crear la cuenta.");
+            }
         } catch (error) {
             alert(error.message);
         } finally {
             setLoading(false);
         }
     };
+
+
 
     return (
         <Container component="main" maxWidth="xs">

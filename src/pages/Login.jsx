@@ -110,6 +110,9 @@ export default function Login() {
                         <Typography variant="body1">
                             <strong>Rol:</strong> {userProfile.roles?.nombre}
                         </Typography>
+                        <Typography variant="body1">
+                            <strong>ID:</strong> {userProfile.user_id}
+                        </Typography>
                     </CardContent>
                 </Card>
             )}

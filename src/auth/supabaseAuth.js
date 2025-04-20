@@ -38,12 +38,14 @@ export async function register(email, password, nombre) {
             { user_id: user.id, nombre, rol_id: 2 } // Aquí asignamos el rol de usuario
         ]);
 
+    //Aca hay que leer el id asignado y traerlo para copiar el usuario en mi bd
+
     if (insertError) {
         console.error("Error insertando en usuarios:", insertError.message);
         throw insertError;
     }
 
-    return user;
+    return { user, rol_id: 2 };
 }
 
 
