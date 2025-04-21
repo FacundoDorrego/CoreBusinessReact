@@ -1,61 +1,43 @@
 ﻿import { useState } from "react";
-import { TextField, Button, Box, Typography, Container, Grid, Card, CardContent } from "@mui/material";
+import { TextField, Button, Box, Typography, Container, Card, CardContent, CircularProgress } from "@mui/material";
+import { useNavigate,Link } from "react-router-dom";
 import { register } from "../auth/supabaseAuth";
-import axios from 'axios';
+
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [nombre, setNombre] = useState("");
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
     const handleRegister = async () => {
         setLoading(true);
+        setError(null);
         try {
-            // Llamada para registrar el usuario en Supabase
-            const { user, rol_id } = await register(email, password, nombre);
-
-            if (!user?.id) {
-                throw new Error("No se pudo obtener el ID del usuario de Supabase");
-            }
-
-            // Ahora se hace la llamada a tu API con el ID de Supabase (user.id)
-            const response = await axios.post("/api/Usuarios", {
-                usuarioID: user.id,  // Usamos el ID que Supabase ha asignado al usuario
-                nombreUsuario: nombre,
-                rolid: rol_id,        // Asumimos que el rol se lo asignas directamente desde Supabase
-            });
-
-            if (response.status === 201) {
-                alert("Cuenta creada con éxito 🎯");
-            } else {
-                alert("Hubo un problema al crear la cuenta.");
+            const { user, error } = await register(email, password, nombre);
+            if (user) {
+                alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
+                navigate("/login");
+            } else if (error) {
+                setError(error.message);
             }
         } catch (error) {
-            alert(error.message);
+            setError(error.message);
         } finally {
             setLoading(false);
         }
     };
-
-
 
     return (
         <Container component="main" maxWidth="xs">
             <Card>
                 <CardContent>
                     <Typography variant="h5" align="center" gutterBottom>
-                        Crear Cuenta
+                        Regístrate
                     </Typography>
-                    <Box
-                        component="form"
-                        noValidate
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: 2,
-                        }}
-                    >
+                    <Box component="form" noValidate sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
                         <TextField
                             label="Nombre"
                             variant="outlined"
@@ -84,24 +66,36 @@ export default function Register() {
                         />
                         <Button
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             fullWidth
                             onClick={handleRegister}
                             disabled={loading}
+                            sx={{ position: "relative" }}
                         >
-                            {loading ? "Cargando..." : "Registrarse"}
+                            {loading ? (
+                                <CircularProgress size={24} sx={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }} />
+                            ) : (
+                                "Registrarse"
+                            )}
                         </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            component={Link}
+                            to="/login"
+                            disabled={loading}
+                            sx={{ position: "relative" }}
+                        >
+                            {loading ? (
+                                <CircularProgress size={24} sx={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }} />
+                            ) : (
+                                "Volver"
+                            )}
+                        </Button>
+
                     </Box>
-                    <Grid container justifyContent="center" mt={2}>
-                        <Grid item>
-                            <Typography variant="body2">
-                                ¿Ya tienes cuenta?{" "}
-                                <Button href="/login" variant="text" color="primary">
-                                    Iniciar Sesión
-                                </Button>
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    {error && <Typography color="error" align="center" mt={2}>{error}</Typography>}
                 </CardContent>
             </Card>
         </Container>

@@ -1,35 +1,39 @@
-﻿import { useState, useContext } from "react";
+﻿import { useState, useEffect } from "react";
 import { TextField, Button, Box, Typography, Container, Grid, Card, CardContent } from "@mui/material";
-import { login, getPerfil, supabase } from "../auth/supabaseAuth"; // Asegúrate de tener la función getPerfil
+import { login } from "../auth/supabaseAuth"; // Llamada para login
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/authContext"; // Importación correcta
+ // Hook para acceso al contexto de autenticación
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [userProfile, setUserProfile] = useState(null);
-    const [error, setError] = useState(null); // Estado para manejar errores
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado para manejar si el usuario está autenticado
+    const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
+    const { loginUser, user } = useAuth(); // Obtener usuario y loginUser desde el contexto
+
+    // Si ya está logueado, redirigir directamente a la página principal
+    useEffect(() => {
+        if (user) {
+            navigate("/"); // Redirigir a la página principal si ya hay sesión activa
+        }
+    }, [user, navigate]);
 
     const handleLogin = async () => {
         setLoading(true);
-        setError(null); // Limpiar errores al intentar hacer login
+        setError(null);
         try {
-            // Realizamos el login
             const data = await login(email, password);
 
             if (data) {
                 alert("Logueado con éxito 💪");
 
-                // Obtener perfil después del login
-                const perfil = await getPerfil();
-
-                if (perfil) {
-                    setUserProfile(perfil); // Guardamos el perfil en el estado
-                    setIsAuthenticated(true); // Cambiamos el estado de autenticación
-                    console.log("Perfil del usuario:", perfil); // Muestra el perfil en la consola para verificar
-                }
+                // Inicia sesión y guarda el usuario
+                loginUser(data.user);
+                
             }
-
         } catch (error) {
             setError(error.message);
         } finally {
@@ -99,23 +103,6 @@ export default function Login() {
                     </Grid>
                 </CardContent>
             </Card>
-
-            {userProfile && (
-                <Card sx={{ mt: 3 }}>
-                    <CardContent>
-                        <Typography variant="h6">Perfil del Usuario:</Typography>
-                        <Typography variant="body1">
-                            <strong>Nombre:</strong> {userProfile.nombre}
-                        </Typography>
-                        <Typography variant="body1">
-                            <strong>Rol:</strong> {userProfile.roles?.nombre}
-                        </Typography>
-                        <Typography variant="body1">
-                            <strong>ID:</strong> {userProfile.user_id}
-                        </Typography>
-                    </CardContent>
-                </Card>
-            )}
         </Container>
     );
 }
