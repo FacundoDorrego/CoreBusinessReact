@@ -70,6 +70,7 @@ export async function register(email, password, nombre) {
 
 
 export async function login(email, password) {
+    // Autenticación con Supabase
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -80,7 +81,22 @@ export async function login(email, password) {
         throw error;
     }
 
-    return data; // Aquí solo devuelves los datos del usuario autenticado
+    const user = data.user;
+
+    try {
+        // Obtener el perfil desde tu API usando el ID del usuario de Supabase
+        const response = await axios.get(`/api/Usuarios/${user.id}`);
+
+        const perfil = response.data.usuario;
+
+        return {
+            auth: data,      // Datos del login
+            perfil: perfil   // Datos del usuario desde tu base
+        };
+    } catch (err) {
+        console.error("Error al obtener el perfil:", err);
+        throw new Error("Autenticación exitosa, pero no se pudo obtener el perfil.");
+    }
 }
 
 

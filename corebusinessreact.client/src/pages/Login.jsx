@@ -26,13 +26,21 @@ export default function Login() {
         setError(null);
         try {
             const data = await login(email, password);
-
-            if (data) {
+            // Asegúrate de que tanto auth.user como perfil existen
+            if (data && data.auth && data.auth.user && data.perfil) {
                 alert("Logueado con éxito 💪");
 
+                // Combina la información de auth.user y perfil
+                const userData = {
+                    ...data.auth.user,
+                    ...data.perfil,
+                };
+
                 // Inicia sesión y guarda el usuario
-                loginUser(data.user);
-                
+                loginUser(userData); // Pasa el usuario combinado a loginUser
+            } else {
+                console.error("No se obtuvo un perfil de usuario válido");
+                setError("Error al obtener perfil.");
             }
         } catch (error) {
             setError(error.message);
@@ -40,6 +48,8 @@ export default function Login() {
             setLoading(false);
         }
     };
+
+
 
     return (
         <Container component="main" maxWidth="xs">

@@ -1,4 +1,4 @@
-﻿import { useAuth } from "../auth/authContext";
+import { useAuth } from "../auth/authContext";
 import { useNavigate } from "react-router-dom";
 import { Container, Paper, Typography, Button, CircularProgress } from "@mui/material";
 

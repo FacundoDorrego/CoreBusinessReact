@@ -1,11 +1,13 @@
-﻿import React from "react";
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom"; // Añadimos Navigate para redirección
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Inicio from "./pages/Inicio";
 import Perfil from "./pages/Perfil";
 import Registro from "./pages/Registro";
-import Productos from "./pages/Productos"
+import Productos from "./pages/Productos";
+import Empresas from "./pages/Empresas";
+import DashboardEmpresa from "./pages/DashboardEmpresa";
 import { useAuth } from "./auth/authContext"; // Importamos el hook de autenticación
 
 const App = () => {
@@ -16,7 +18,9 @@ const App = () => {
             <Route path="/" element={<Layout />}>
                 <Route index element={user ? <Inicio /> : <Navigate to="/login" />} /> {/* Página de inicio */}
                 <Route path="perfil" element={user ? <Perfil /> : <Navigate to="/login" />} /> {/* Redirigir si no está autenticado */}
-                <Route path="productos" element={user ? <Productos /> : <Navigate to="/login" />} /> 
+                <Route path="empresas" element={user ? <Empresas /> : <Navigate to="/login" />} /> 
+                <Route path="empresa/:id" element={user ? <DashboardEmpresa /> : <Navigate to="/login" />} />
+                <Route path="empresa/:empresaId/productos" element={user ? <Productos /> : <Navigate to="/login" /> } />
             </Route>
 
             {/* Redirección si ya está autenticado, no debería acceder a login ni registro */}

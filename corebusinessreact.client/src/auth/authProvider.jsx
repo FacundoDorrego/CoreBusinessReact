@@ -56,10 +56,26 @@ export function AuthProvider({ children }) {
     }, [navigate]);
 
     const loginUser = (perfil) => {
-        setUser(perfil);
-        localStorage.setItem("user", JSON.stringify(perfil)); // Guarda el perfil en localStorage
-        navigate("/"); // Redirige al dashboard o cualquier otra ruta protegida
+        if (!perfil || !perfil.UsuarioID || !perfil.NombreUsuario || !perfil.RolID) {
+            console.error("Perfil inválido", perfil);
+            return;
+        }
+
+        const userToStore = {
+            user_id: perfil.UsuarioID,
+            nombre: perfil.NombreUsuario,
+            rol_id: perfil.RolID,
+            rol_nombre: perfil.rol_nombre || null,
+            email: perfil.email || null,
+            last_sign_in_at: perfil.last_sign_in_at || null
+        };
+
+        localStorage.setItem("user", JSON.stringify(userToStore));
+        setUser(userToStore);
+        navigate("/");
     };
+
+
 
     const logoutUser = async () => {
         await supabase.auth.signOut(); // Llama a la función logout de Supabase
