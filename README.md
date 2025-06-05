@@ -21,3 +21,9 @@ Frontend React para CoreBusiness, sistema ERP para gestión de stock y empresas.
 - Diseño responsivo y moderno  
 
 ---
+## Autor
+
+**Facundo Nehuen Dorrego**  
+Estudiante de UTN FRGP - Tecnicatura en Programación  
+dorregofacundo28@gmail.com  
+[LinkedIn](https://www.linkedin.com/in/facundo-nehuen-dorrego-380ba0239/)  
